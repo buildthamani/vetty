@@ -59,6 +59,7 @@ internal fun schemaSlug(
     buildString {
         append(
             route
+                .removePrefix("/")
                 .replace("_", "")
                 .replace("{", "")
                 .replace("}", ""),

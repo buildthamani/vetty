@@ -12,25 +12,36 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.thamani.vetty.retrofit.VettyInterceptor
+import app.thamani.vetty.ui.Vetty
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import app.thamani.vetty.annotations.RouteMethod
+import app.thamani.vetty.annotations.VettySchema
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -41,6 +52,7 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.GET
 
 // datasource
+@VettySchema(route = "/api/character", method = RouteMethod.GET)
 @Serializable
 data class CharactersResponse(
     val results: List<Character>,
@@ -75,7 +87,12 @@ interface CharacterAPI {
                     OkHttpClient
                         .Builder()
                         .addInterceptor(loggingInterceptor)
-                        .build()
+                        .addInterceptor(
+                            VettyInterceptor {
+                                enabled = true
+                                verbose = true
+                            },
+                        ).build()
 
                 val networkJson = Json { ignoreUnknownKeys = true }
 
@@ -204,8 +221,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            var visible by remember { mutableStateOf(false) }
             RetroTheme {
-                CharactersScreen()
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    CharactersScreen()
+                    SmallFloatingActionButton(
+                        modifier =
+                            Modifier
+                                .padding(24.dp)
+                                .align(Alignment.BottomEnd),
+                        onClick = { visible = true },
+                    ) {
+                        Icon(Icons.Rounded.Settings, "build")
+                    }
+                    Vetty(visible = visible, onDismiss = { visible = false })
+                }
             }
         }
     }

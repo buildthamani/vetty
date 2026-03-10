@@ -13,7 +13,12 @@ internal fun VettySymbolProcessor.processClass(classDecl: KSClassDeclaration): S
     val annotation = classDecl.annotations.first { it.shortName.asString() == "VettySchema" }
 
     val route = annotation.arg<String>("route").orEmpty()
-    val method = annotation.arg<String>("method").toString()
+    val method = annotation.arguments
+        .firstOrNull { it.name?.asString() == "method" }
+        ?.value
+        ?.toString()
+        ?.substringAfterLast(".")
+        ?: "GET"
     val strict = annotation.arg<Boolean>("strict") ?: false
     val description = annotation.arg<String>("description").orEmpty()
 

@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    // In a real project the Vetty plugin applies KSP automatically:
+    //   id("app.thamani.vetty") version "<version>"
+    // For local development we apply KSP and the project deps directly.
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -15,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId = "app.vetty.retrofit"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
@@ -59,6 +63,22 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    // ── Vetty ──────────────────────────────────────────────────
+    // These three are added automatically by the Vetty Gradle plugin.
+    // In a published project you would only write:
+    //   id("app.thamani.vetty") version "<version>"
+    // and optionally add UI / provider modules below.
+    implementation(project(":vetty:plugin:annotations"))
+    ksp(project(":vetty:plugin:processor"))
+    implementation(project(":vetty:common:core"))
+
+    // Optional: Retrofit interceptor
+    implementation(project(":vetty:providers:retrofit"))
+
+    // Optional: Debug UI to view schema diffs
+    implementation(project(":vetty:ui:coupled"))
+
+    // ── Networking ─────────────────────────────────────────────
     implementation(libs.okhttp.core)
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)

@@ -57,6 +57,19 @@ internal fun buildPropertySchema(
         }
     }
 
+    // Array: build items schema from the type argument
+    if (baseType == "array") {
+        val itemType = type.arguments.firstOrNull()?.type?.resolve()
+        if (itemType != null) {
+            val itemSchema = buildPropertySchema(
+                type = itemType,
+                field = null,
+                nullable = itemType.isMarkedNullable,
+            )
+            parts += """"items": $itemSchema"""
+        }
+    }
+
     sb.append(parts.joinToString(", "))
     sb.append("}")
     return sb.toString()
