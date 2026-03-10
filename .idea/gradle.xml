@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/sample" />
+            <option value="$PROJECT_DIR$/sample/retrofit" />
+            <option value="$PROJECT_DIR$/vetty" />
+            <option value="$PROJECT_DIR$/vetty/common" />
+            <option value="$PROJECT_DIR$/vetty/common/core" />
+            <option value="$PROJECT_DIR$/vetty/common/presentation" />
+            <option value="$PROJECT_DIR$/vetty/plugin" />
+            <option value="$PROJECT_DIR$/vetty/plugin/annotations" />
+            <option value="$PROJECT_DIR$/vetty/plugin/gradle" />
+            <option value="$PROJECT_DIR$/vetty/plugin/processor" />
+            <option value="$PROJECT_DIR$/vetty/providers" />
+            <option value="$PROJECT_DIR$/vetty/providers/retrofit" />
+            <option value="$PROJECT_DIR$/vetty/ui" />
+            <option value="$PROJECT_DIR$/vetty/ui/coupled" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

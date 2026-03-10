@@ -29,3 +29,16 @@ include(":app")
 include(":vetty:plugin:annotations")
 include(":vetty:plugin:processor")
 include(":vetty:plugin:gradle")
+
+// common
+include(":vetty:common:core")
+include(":vetty:common:presentation")
+
+// providers
+include(":vetty:providers:retrofit")
+
+// ui
+include(":vetty:ui:coupled")
+
+// samples
+include(":sample:retrofit")

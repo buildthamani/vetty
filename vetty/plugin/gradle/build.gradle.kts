@@ -1,7 +1,7 @@
 plugins {
     `java-gradle-plugin`
     `maven-publish`
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(libs.plugins.kotlin.jvm)
 }
 
 gradlePlugin {
