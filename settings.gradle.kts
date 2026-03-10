@@ -27,4 +27,3 @@ include(":app")
 
 // plugins
 include(":vetty:plugin:annotations")
- 
