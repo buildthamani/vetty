@@ -22,6 +22,6 @@ package app.thamani.vetty.annotations
 annotation class VettySchema(
     val route: String,
     val method: RouteMethod,
-    val strict: Boolean = false, // if true, extra fields = failure
+    val strict: Boolean = false,
     val description: String = "",
 )
