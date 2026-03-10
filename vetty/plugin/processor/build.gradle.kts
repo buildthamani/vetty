@@ -16,6 +16,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":vetty:plugin:annotations"))
     implementation(libs.symbol.processing.api)
     testImplementation(kotlin("test"))
 }
