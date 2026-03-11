@@ -56,6 +56,10 @@ open class VettyInterceptor(
     val enabled: Boolean get() = interceptorConfig.enabled
     val verbose: Boolean get() = interceptorConfig.verbose
 
+    init {
+        ensureInitialized()
+    }
+
     final override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
@@ -137,6 +141,22 @@ open class VettyInterceptor(
     open fun onBeforeReturn(response: Response): Response = response
 
     // ─── Private helpers ──────────────────────────────────────────────────────
+
+    companion object {
+        @Volatile
+        private var initialized = false
+
+        private fun ensureInitialized() {
+            if (!initialized) {
+                synchronized(this) {
+                    if (!initialized) {
+                        Vetty.init()
+                        initialized = true
+                    }
+                }
+            }
+        }
+    }
 
     private fun resolveRoute(path: String): String? =
         SchemaLoader.allSchemas().firstOrNull { SchemaLoader.routeMatches(it.route, path) }?.route

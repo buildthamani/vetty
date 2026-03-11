@@ -34,14 +34,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.thamani.vetty.annotations.RouteMethod
+import app.thamani.vetty.annotations.VettySchema
 import app.thamani.vetty.retrofit.VettyInterceptor
 import app.thamani.vetty.ui.Vetty
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import app.thamani.vetty.annotations.RouteMethod
-import app.thamani.vetty.annotations.VettySchema
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
