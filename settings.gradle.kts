@@ -30,6 +30,9 @@ include(":vetty:plugin:annotations")
 include(":vetty:plugin:processor")
 include(":vetty:plugin:gradle")
 
+// bom
+include(":vetty:bom")
+
 // common
 include(":vetty:common:core")
 include(":vetty:common:presentation")

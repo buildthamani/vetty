@@ -1,7 +1,20 @@
 plugins {
     id("java-library")
+    `maven-publish`
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.kotlin.jvm)
+}
+
+group = project.property("vetty.group") as String
+version = project.property("vetty.version") as String
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            artifactId = "vetty-processor"
+            from(components["java"])
+        }
+    }
 }
 
 java {

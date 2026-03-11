@@ -52,3 +52,14 @@ dependencies {
     compileOnly(gradleApi())
     compileOnly(libs.symbol.processing.gradle)
 }
+
+// Set artifact ID on the auto-generated pluginMaven publication
+afterEvaluate {
+    extensions.configure<PublishingExtension> {
+        publications.withType<MavenPublication>().configureEach {
+            if (name == "pluginMaven") {
+                artifactId = "vetty-gradle-plugin"
+            }
+        }
+    }
+}

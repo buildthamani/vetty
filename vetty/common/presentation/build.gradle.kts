@@ -1,6 +1,21 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
+    `maven-publish`
+}
+
+group = project.property("vetty.group") as String
+version = project.property("vetty.version") as String
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                artifactId = "vetty-presentation"
+                from(components["release"])
+            }
+        }
+    }
 }
 
 android {
@@ -13,6 +28,10 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    publishing {
+        singleVariant("release")
     }
 }
 
