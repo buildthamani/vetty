@@ -23,7 +23,7 @@
             <option value="$PROJECT_DIR$/vetty/providers" />
             <option value="$PROJECT_DIR$/vetty/providers/retrofit" />
             <option value="$PROJECT_DIR$/vetty/ui" />
-            <option value="$PROJECT_DIR$/vetty/ui/coupled" />
+            <option value="$PROJECT_DIR$/vetty/ui/overlay" />
           </set>
         </option>
       </GradleProjectSettings>

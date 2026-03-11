@@ -10,7 +10,7 @@ import app.thamani.vetty.ui.common.presenter.screens.RequestScreen
 import app.thamani.vetty.ui.common.presenter.screens.RequestsScreen
 
 /**
- * Root navigation composable shared between [vetty-ui:coupled] and [vetty-ui:decoupled].
+ * Root navigation composable shared between [vetty-ui:overlay] and [vetty-ui:decoupled].
  *
  * Owns no navigation back-stack — toggles between the list and detail views by
  * updating [VettyViewModel.selectEvent]. This keeps the logic identical whether

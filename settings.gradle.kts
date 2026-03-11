@@ -38,7 +38,7 @@ include(":vetty:common:presentation")
 include(":vetty:providers:retrofit")
 
 // ui
-include(":vetty:ui:coupled")
+include(":vetty:ui:overlay")
 
 // samples
 include(":sample:retrofit")

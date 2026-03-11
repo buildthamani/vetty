@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.vetty.ui.coupled"
+    namespace = "dev.vetty.ui.overlay"
     compileSdk = 36
 
     defaultConfig {

@@ -76,7 +76,7 @@ dependencies {
     implementation(project(":vetty:providers:retrofit"))
 
     // Optional: Debug UI to view schema diffs
-    implementation(project(":vetty:ui:coupled"))
+    implementation(project(":vetty:ui:overlay"))
 
     // ── Networking ─────────────────────────────────────────────
     implementation(libs.okhttp.core)
